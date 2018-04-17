@@ -13,7 +13,6 @@
 
     <code>Arbre: {{arbre}}</code><br/>
     <code>Statut: {{arbre.statut}}</code><br />
-    <code>StatutArray: {{statutArray}}</code><br />
   </div>
 </template>
 
@@ -44,7 +43,6 @@ export default {
         cadastre: 1
       },
       placeholder: 'Status Quo',
-      statutArray: [],
       multiple: true
     }
   },
@@ -55,8 +53,6 @@ export default {
   },
   mounted () {
     this.arbre.statut = [{value: -1, label: '- Tous -', order: 1}]
-    // this.statutArray = [{value: -1, label: '- Tous -', order: 1}]
-    // this.statutArray = [{value: 10, label: 'En demande d\'abattage', order: 2}]
 
     if (this.multiple) {
       this.arbre.statut = [{value: -1, label: '-Tous-'}]
