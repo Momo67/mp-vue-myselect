@@ -12,7 +12,8 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js",
-    "build-myselect": "webpack --config build/webpack.myselect-plugin.config.js"
+    "build-plugin": "webpack --config build/webpack.myselect-plugin.config.js",
+    "build-component": "webpack --config build/webpack.myselect-component.config.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
