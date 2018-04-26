@@ -2,6 +2,7 @@
   "name": "mp-vue-myselect",
   "version": "1.0.0",
   "description": "A Vue.js select component to be used in Goeland",
+  "main": "dist/my-select.component.js"
   "author": "Maurice Pittet <maurice.pittet@lausanne.ch>",
   "private": false,
   "scripts": {
