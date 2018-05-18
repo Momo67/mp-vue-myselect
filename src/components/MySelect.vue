@@ -139,14 +139,14 @@ export default {
       this.dataOptions.push({value: -1, label: '- Tous -', order: 1})
       options.forEach(item => {
         if ((item.IsActive === undefined) || (item.IsActive !== '0')) {
-          let data = (this.fieldname === undefined) ? item.Data : item[this.fieldname]
-          let value = (this.trackby === undefined) ? ((item.Value !== undefined) ? item.Value : item.Id) : item[this.trackby]
-          data = data.replace(/&nbsp;/g, ' ')
-          let option = {}
-          option.value = parseInt(value)
-          option.label = data
-          option.order = (item.SortOrder !== undefined) ? parseInt(item.SortOrder) : data
-          this.dataOptions.push(option)
+          let __data = (this.fieldname === undefined) ? ((item.Data === undefined) ? item[Object.keys(item)[0]] : item.Data) : item[this.fieldname]
+          let __value = (this.trackby === undefined) ? ((item.Value !== undefined) ? item.Value : item.Id) : item[this.trackby]
+          __data = __data.replace(/&nbsp;/g, ' ')
+          let __option = {}
+          __option.value = parseInt(__value)
+          __option.label = __data
+          __option.order = (item.SortOrder !== undefined) ? parseInt(item.SortOrder) : __data
+          this.dataOptions.push(__option)
         }
       })
       this.dataOptions = orderBy(this.dataOptions, 'order', this.sort)
