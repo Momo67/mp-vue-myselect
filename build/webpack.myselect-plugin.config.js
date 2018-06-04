@@ -1,7 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const utils = require('./utils')
-const APP_ABSOLUTE_PATH = path.join(__dirname, '../src');
+const APP_ABSOLUTE_PATH = path.join(__dirname, '../src')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -29,6 +30,8 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        include: __dirname,
+        exclude: /node_modules/
         // include: [resolve('src'), resolve('test')]
       },
       {
@@ -48,13 +51,14 @@ module.exports = {
   externals: {
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin( {
-      minimize : true,
+    new UglifyJsPlugin( {
       sourceMap : false,
-      mangle: true,
-      compress: {
-        warnings: false
-      }
+      uglifyOptions: {
+        mangle: true,
+        compress: {
+          warnings: false
+        }
+      },
     } ),
     new webpack.DefinePlugin({
       'process.env': {
