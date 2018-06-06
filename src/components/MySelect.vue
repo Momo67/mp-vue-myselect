@@ -67,6 +67,18 @@ export default {
     multiple: {
       type: Boolean,
       default: false
+    },
+    delay: {
+      type: Number,
+      default: 1000,
+      required: false,
+      validator: function (value) {
+        const __test = /^\d{1,5}$/.test(value)
+        if (!__test) {
+          alert('La valeur du paramètre delay du composant mp-vue-myselect doit être comprise entre 0 et 99999')
+        }
+        return __test
+      }
     }
   },
   computed: {
@@ -103,13 +115,15 @@ export default {
     },
     value: {
       handler (val) {
-        if (this.multiple) {
-          this.selectedId = val
-          this.$refs.select.mutableValue = val
-        } else {
-          this.selectedId = val
-          this.$refs.select.mutableValue = this.dataOptions.find(obj => obj.value === val)
-        }
+        setTimeout(() => {
+          if (this.multiple) {
+            this.selectedId = val
+            this.$refs.select.mutableValue = val
+          } else {
+            this.selectedId = val
+            this.$refs.select.mutableValue = this.dataOptions.find(obj => obj.value === val)
+          }
+        }, (this.options === undefined) ? this.delay : 0)
       },
       deep: true
     },
