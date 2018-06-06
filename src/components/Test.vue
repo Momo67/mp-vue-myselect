@@ -10,9 +10,17 @@
       :placeholder="placeholder"
       :options="options"
     ></my-select>
-
+    <my-select
+      v-model="arbre.genre"
+      :src="src_url"
+      item="Genre"
+      sort="asc"
+      placeholder="Sélectionner un genre"
+      :delay="500"
+    ></my-select>
     <code>Arbre: {{arbre}}</code><br/>
     <code>Statut: {{arbre.statut}}</code><br />
+    <button @click="setValues">Set</button>
   </div>
 </template>
 
@@ -38,17 +46,22 @@ export default {
         {Id: 2, Data: 'Supprimé', SortOrder: 20, IsActive: 1}
       ],
       arbre: {
-        statut: 8,
-        genre: 227,
+        statut: 9,
+        genre: 17,
         cadastre: 1
       },
       placeholder: 'Status Quo',
-      multiple: true
+      multiple: false,
+      src_url: 'http://localhost/goeland/objet/ajax/arbre_get_select.php'
     }
   },
   methods: {
     onMySelectEvent: function () {
       alert('Appel de onMySelectEvent, event: ' + event.button)
+    },
+    setValues () {
+      this.arbre.statut = 5
+      this.arbre.genre = 10
     }
   },
   mounted () {
@@ -57,9 +70,9 @@ export default {
     if (this.multiple) {
       this.arbre.statut = [{value: -1, label: '-Tous-'}]
     } else {
-      this.arbre.statut = 4
+      this.arbre.statut = 1
     }
-    // this.arbre.statut = 7
+    this.arbre.genre = 19
   }
 }
 </script>
