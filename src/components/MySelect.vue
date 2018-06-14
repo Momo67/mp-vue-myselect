@@ -143,7 +143,9 @@ export default {
       }
     },
     onInputArray (value) {
-      this.selectedId = value
+      if (value.length !== undefined) {
+        this.selectedId = value
+      }
     },
     onInputValue ({value}) {
       this.selectedId = value
