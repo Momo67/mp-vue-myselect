@@ -10,7 +10,6 @@
       :placeholder="placeholder"
       :options="options"
     ></my-select>
-    <!--
     <button @click="toggle=!toggle">+</button><br />
     <div v-show="toggle">
       <my-select
@@ -22,7 +21,6 @@
       @onoptionsloaded="loadInitValue('genre')"
       ></my-select>
     </div>
-  -->
     <code>Arbre: {{arbre}}</code><br/>
     <code>Statut: {{arbre.statut}}</code><br />
     <button @click="setValues">Set</button>
@@ -74,8 +72,8 @@ export default {
     },
     loadInitValue (item) {
       this.arbre[item] = Config.ARBRE[item]
-      this.arbre.statut = [{value: 9, label: 'A surveiller', order: 1}]
-      this.arbre.genre = 30
+      // this.arbre.statut = [{value: 9, label: 'A surveiller', order: 1}]
+      // this.arbre.genre = 30
     }
   },
   mounted () {
