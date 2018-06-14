@@ -10,14 +10,17 @@
       :placeholder="placeholder"
       :options="options"
     ></my-select>
-    <my-select
+    <button @click="toggle=!toggle">+</button><br />
+    <div v-show="toggle">
+      <my-select
       v-model="arbre.genre"
       :src="src_url"
       item="Genre"
       sort="asc"
       placeholder="Sélectionner un genre"
-      :delay="500"
-    ></my-select>
+      @onoptionsloaded="loadInitValue('genre')"
+      ></my-select>
+    </div>
     <code>Arbre: {{arbre}}</code><br/>
     <code>Statut: {{arbre.statut}}</code><br />
     <button @click="setValues">Set</button>
@@ -26,6 +29,7 @@
 
 <script>
 import MySelect from './MySelect'
+import * as Config from '../config'
 
 export default {
   name: 'test',
@@ -34,6 +38,7 @@ export default {
   },
   data () {
     return {
+      toggle: false,
       statut: null,
       options: [
         {Id: 9, Data: 'A surveiller', SortOrder: 70, IsActive: 1},
@@ -46,12 +51,14 @@ export default {
         {Id: 2, Data: 'Supprimé', SortOrder: 20, IsActive: 1}
       ],
       arbre: {
-        statut: 9,
+        statut: [{value: 9, label: 'A surveiller'}]
+        /*
         genre: 17,
         cadastre: 1
+        */
       },
       placeholder: 'Status Quo',
-      multiple: false,
+      multiple: true,
       src_url: 'http://localhost/goeland/objet/ajax/arbre_get_select.php'
     }
   },
@@ -62,17 +69,23 @@ export default {
     setValues () {
       this.arbre.statut = 5
       this.arbre.genre = 10
+    },
+    loadInitValue (item) {
+      this.arbre[item] = Config.ARBRE[item]
+      // this.arbre.statut = [{value: 9, label: 'A surveiller', order: 1}]
+      // this.arbre.genre = 30
     }
   },
   mounted () {
-    this.arbre.statut = [{value: -1, label: '- Tous -', order: 1}]
-
+    this.arbre.statut = [{value: 9, label: 'A surveiller', order: 1}]
+    /*
     if (this.multiple) {
       this.arbre.statut = [{value: -1, label: '-Tous-'}]
     } else {
       this.arbre.statut = 1
     }
     this.arbre.genre = 19
+    */
   }
 }
 </script>
