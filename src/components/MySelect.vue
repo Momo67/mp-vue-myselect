@@ -115,7 +115,17 @@ export default {
     },
     value: {
       handler (val) {
-        setTimeout(() => {
+        if (this.$listeners.onoptionsloaded === undefined) {
+          setTimeout(() => {
+            if (this.multiple) {
+              this.selectedId = val
+              this.$refs.select.mutableValue = val
+            } else {
+              this.selectedId = val
+              this.$refs.select.mutableValue = this.dataOptions.find(obj => obj.value === val)
+            }
+          }, (this.options === undefined) ? this.delay : 0)
+        } else {
           if (this.multiple) {
             this.selectedId = val
             this.$refs.select.mutableValue = val
@@ -123,7 +133,7 @@ export default {
             this.selectedId = val
             this.$refs.select.mutableValue = this.dataOptions.find(obj => obj.value === val)
           }
-        }, (this.options === undefined) ? this.delay : 0)
+        }
       },
       deep: true
     },
@@ -143,7 +153,9 @@ export default {
       }
     },
     onInputArray (value) {
-      this.selectedId = value
+      if (value.length !== undefined) {
+        this.selectedId = value
+      }
     },
     onInputValue ({value}) {
       this.selectedId = value
