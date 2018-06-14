@@ -7,7 +7,7 @@ export const ARBRE = {
   secteur: -1,
   emplacement: -1,
   rue: -1,
-  genre: 30,
+  genre: 18,
   espece: -1,
   cultivar: -1,
   circ_tronc: -1,
