@@ -48,7 +48,8 @@ export default {
         {Id: 8, Data: 'En attente de tomographie', SortOrder: 60, IsActive: 1},
         {Id: 10, Data: 'En demande d\'abattage', SortOrder: 39, IsActive: 1},
         {Id: 1, Data: 'Existant', SortOrder: 10, IsActive: 1},
-        {Id: 2, Data: 'Supprimé', SortOrder: 20, IsActive: 1}
+        {Id: 2, Data: 'Supprimé', SortOrder: 20, IsActive: 1},
+        {Id: 666, Data: 'The Devil', SortOrder: 1, IsActive: 1}
       ],
       arbre: {
         statut: [{value: 9, label: 'A surveiller'}]
